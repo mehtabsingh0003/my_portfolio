@@ -1,74 +1,176 @@
-# Envision Studio — Portfolio Site
+# Mehtab Singh — Full-Stack Developer Portfolio
 
-A full-stack portfolio site: React (Vite + Tailwind) frontend, Node/Express +
-MongoDB backend, image uploads via Cloudinary, and a JWT-protected admin panel.
+<p align="center">
+  <strong>A modern, full-stack developer portfolio with a dynamic admin dashboard.</strong>
+</p>
 
-## Structure
+<p align="center">
+  <a href="https://github.com/mehtabsingh0003/my_portfolio">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository" />
+  </a>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Node.js-Backend-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+</p>
 
-```
-backend/    Express API (auth, projects, contact messages)
-frontend/   React app (public site + admin dashboard)
-```
+---
 
-## 1. Backend setup
+## 🚀 About The Project
 
-```bash
-cd backend
-npm install
-cp .env.example .env
-```
+This repository contains my personal **full-stack developer portfolio**, designed to present my technical skills, projects, professional profile, resume, and development activity through a modern web interface.
 
-Fill in `.env`:
-- `MONGO_URI` — a local Mongo instance or an Atlas connection string
-- `JWT_SECRET` — any long random string
-- `CLOUDINARY_CLOUD_NAME` / `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` — from your Cloudinary dashboard (free tier is fine)
-- `ADMIN_NAME` / `ADMIN_EMAIL` / `ADMIN_PASSWORD` — used only once, to create your admin login
+Instead of using a static portfolio, this project uses a backend-powered architecture where portfolio content can be managed dynamically through an admin interface.
 
-Create your admin user (run once):
+The goal is to build a portfolio that is not only visually polished, but also demonstrates real-world software engineering concepts such as:
 
-```bash
-npm run seed:admin
-```
+- REST API development
+- Authentication and authorization
+- Database-driven content management
+- File and resume management
+- CRUD operations
+- External API integration
+- Responsive UI development
+- Reusable React components
+- Frontend/backend separation
 
-Start the API:
+---
 
-```bash
-npm run dev
-```
+## ✨ Features
 
-The API runs on `http://localhost:5000` by default.
+### 🌐 Public Portfolio
 
-## 2. Frontend setup
+The public website provides dedicated sections for:
 
-```bash
-cd frontend
-npm install
-cp .env.example .env
-```
+- Home
+- About
+- Projects
+- Resume
+- Skills
+- Profile
+- Contact
 
-`VITE_API_URL` defaults to `http://localhost:5000/api` — update it if your
-backend runs elsewhere (e.g. after deploying).
+The content is dynamically loaded from the backend rather than being hard-coded into individual pages.
 
-```bash
-npm run dev
-```
+---
 
-The site runs on `http://localhost:5173` by default.
+### 🛠️ Admin Dashboard
 
-## 3. Using it
+The portfolio includes an administrative interface for managing website content.
 
-- Public site: Home, About, Projects (pulled live from the database), Contact
-  (submits to the backend and shows up under Admin → Messages)
-- Admin: go to `/admin/login`, sign in with the account you seeded, then
-  manage Dashboard stats, Projects (create/edit/delete with image upload),
-  and Messages
+Administrators can manage:
 
-## Notes
+- Profile information
+- Projects
+- Skills
+- Resume
+- Contact information
+- Portfolio content
 
-- Admin routes (`/admin/*` except `/admin/login`) require a valid session —
-  you'll be redirected to log in if you're not authenticated, and the token
-  is verified against a real `User` in MongoDB (not hardcoded).
-- Project create/update/delete on the backend require a valid JWT — the
-  public `GET` endpoints are the only ones left open.
-- Uploading a new image on an existing project replaces the Cloudinary image
-  and cleans up the old one.
+This allows the website to be updated without modifying the frontend source code every time.
+
+---
+
+### 📂 Project Management
+
+Projects can be dynamically created and managed.
+
+Each project can contain information such as:
+
+- Project title
+- Description
+- Technologies
+- Project image
+- GitHub repository
+- Live project URL
+- Published status
+- Featured status
+
+Featured and published projects can then automatically appear on the public homepage.
+
+---
+
+### 📄 Resume Management
+
+The application includes dynamic resume management.
+
+Supported functionality includes:
+
+- Uploading resumes
+- Managing the current resume
+- Viewing the resume in the browser
+- Downloading the resume
+- Displaying resume information on the portfolio
+
+The frontend communicates with backend resume endpoints to retrieve and serve the active resume.
+
+---
+
+### 🧠 Skills Management
+
+Skills can be managed dynamically through the admin interface.
+
+Skills can be organized by categories such as:
+
+- Programming Languages
+- Frontend
+- Backend
+- Databases
+- Tools
+- Frameworks
+- Other Technologies
+
+This makes it easy to maintain and update the technical skill section.
+
+---
+
+### 📊 GitHub & LeetCode Integration
+
+The portfolio can display development statistics from external developer platforms.
+
+Examples include:
+
+- GitHub profile information
+- GitHub activity/statistics
+- LeetCode statistics
+- Coding activity
+
+This gives visitors additional insight into development activity beyond the portfolio projects.
+
+---
+
+### 📬 Contact System
+
+The portfolio includes a dedicated contact section that allows visitors or recruiters to reach out regarding:
+
+- Job opportunities
+- Freelance projects
+- Collaboration
+- Software development
+- Technical discussions
+
+---
+
+## 🏗️ Architecture
+
+The project follows a separated frontend/backend architecture.
+
+```text
+                     ┌─────────────────────┐
+                     │     Portfolio UI     │
+                     │       React         │
+                     └──────────┬──────────┘
+                                │
+                                │ HTTP / REST API
+                                ▼
+                     ┌─────────────────────┐
+                     │     Node / API      │
+                     │      Backend        │
+                     └──────────┬──────────┘
+                                │
+                ┌───────────────┼───────────────┐
+                │               │               │
+                ▼               ▼               ▼
+          ┌──────────┐    ┌──────────┐    ┌─────────────┐
+          │ MongoDB  │    │  Resume  │    │ External    │
+          │ Database │    │ Storage  │    │ APIs        │
+          └──────────┘    └──────────┘    └─────────────┘
